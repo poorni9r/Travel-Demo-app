@@ -19,5 +19,10 @@ Steps to Deploy Travel-app
     - **cd Travel-Demo-app**
 8. Run the application 
     - **http-server -c-1**
-9. Download the elastic-apm-rum.umd.min.js file from the repo
-    - **wget https://github.com/elastic/apm-agent-rum-js/releases/download/%40elastic%2Fapm-rum%405.12.0/elastic-apm-rum.umd.min.js**
+
+After deploying the Elastic agent and completing the APM Integration run the following step to download the elastic-apm-rum.umd.min.js file from the repo
+   - **wget https://github.com/elastic/apm-agent-rum-js/releases/download/%40elastic%2Fapm-rum%405.12.0/elastic-apm-rum.umd.min.js**
+
+
+**Elastic agent** 
+ - **https://www.elastic.co/guide/en/fleet/current/elastic-agent-installation.html**
