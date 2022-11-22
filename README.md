@@ -1,6 +1,6 @@
 # Travel-Demo-app
 
-This is a simple Node.js Application 
+This is a simple JS Application 
 
 
 
