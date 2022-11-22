@@ -1,6 +1,33 @@
 #!/bin/bash
 
 ##################################
+# exit functions for different OS
+##################################
+function exitScriptSuccess()
+{
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    return 0
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX
+    exit 0
+  else
+    exit 0
+  fi
+}
+
+function exitScriptError()
+{
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    return -1
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX
+    exit -1
+  else
+    exit -1
+  fi
+}
+
+##################################
 # List of commands
 # (They will run in order listed)
 ##################################
@@ -11,6 +38,9 @@ commands=(\
   '. ./.nvm/nvm.sh' \
   'nvm install 16.0.0' \
   'npm install -g http-server'  \
+  'cd ./Travel-Demo-app' \
+  'wget https://github.com/elastic/apm-agent-rum-js/releases/download/%40elastic%2Fapm-rum%405.12.0/elastic-apm-rum.umd.min.js' \
+  'http-server -c-1' \
 )
 
 echo -e "\n\n \
@@ -19,7 +49,8 @@ This script will do the following tasks:\n \
  - Install 'nvm - node' version manager\n \
  - Activate nvm\n \
  - Use nvm to install the latest version of Node.js\n \
- - Install http-server\n \
+ - Download the RUM Elastic JavaScript file \n \
+ - Install and Run the http-server\n \
 "
 
 ###############################
@@ -28,7 +59,7 @@ This script will do the following tasks:\n \
 while true; do
   read -r -p 'Do you want to continue? (y/n)' choice
   case "$choice" in
-    n|N) echo "Exiting Script" && exit 0;;
+    n|N) echo "Exiting Script" && exitScriptSuccess;;
     y|Y) break;;
     *)   echo "Response not valid - Please enter 'y' or 'n'";;
   esac
@@ -44,9 +75,8 @@ for i in "${commands[@]}"; do
   ${i}
   if [ $? -ne 0 ]; then
     echo -e "\n\nERROR: command '${i}' FAILED!\n"
-    exit -1
+    exitScriptError
   fi
 done
 
 echo -e "\nScript Complete!\n"
-
