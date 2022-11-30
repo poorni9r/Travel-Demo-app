@@ -3,7 +3,7 @@
 This is a simple JS Application 
 
 ## **Prerequisites**
-      - Ensure Elastic Fleet agent is deployed on your workspace
+      - Ensure Elastic Fleet agent is deployed & up & running on your workspace
 
 ## ** Deploy Travel Demo Application **
 
